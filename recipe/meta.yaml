@@ -1,5 +1,5 @@
 {% set name = "pypdf" %}
-{% set version = "3.2.0" %}
+{% set version = "3.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pypdf-{{ version }}.tar.gz
-  sha256: 77ae2b168cc2f80f56f27566e8466431b7bd05586b8efb7b8ac0bee1e0bdf261
+  sha256: ac6bcd4492b55c95f58f7e3a6e8e113588244bdfb21c8ee60da6db399725b8dd
 
 build:
   skip: true  # [py2k]
