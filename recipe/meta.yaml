@@ -1,4 +1,4 @@
-{% set version = "3.3.0" %}
+{% set version = "3.4.0" %}
 
 package:
   name: pypdf
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-  sha256: 37a272f6dd7d9a0eba29ae201d07d3060f8cb81d301e21f42d99e62d4c4e6e4b
+  sha256: 3aac40e539e6a25a31bdc0240229e7ac6670eec9932ebd27e95106c5d83befe8
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps
