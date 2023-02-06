@@ -1,45 +1,121 @@
+{% set pytest_args = '-m "not (external or samples)"' %}
 {% set version = "3.4.0" %}
 
 package:
-  name: pypdf
+  name: pypdf-split
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-  sha256: 3aac40e539e6a25a31bdc0240229e7ac6670eec9932ebd27e95106c5d83befe8
+  - folder: dist
+    url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
+    sha256: 3aac40e539e6a25a31bdc0240229e7ac6670eec9932ebd27e95106c5d83befe8
+  - folder: src
+    url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
+    sha256: 1fb5632eced11c988e3bf0f4b2b311398a227655c64431a17a6f540ab8f6d7be
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
   number: 0
   noarch: python
 
 requirements:
   host:
-    - flit-core >=3.2,<4
-    - pip
     - python >=3.6
   run:
-    - dataclasses
     - python >=3.6
-    - typing_extensions >=3.10.0.0
 
-test:
-  imports:
-    - pypdf
-  commands:
-    - pip check
-  requires:
-    - pip
+outputs:
+
+  - name: pypdf
+    build:
+      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+      noarch: python
+    requirements:
+      host:
+        - flit-core >=3.2,<4
+        - pip
+        - python >=3.6
+      run:
+        - dataclasses
+        - python >=3.6
+        - typing_extensions >=3.10.0.0
+    test: &simple-test
+      imports:
+        - pypdf
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: pypdf-with-crypto
+    build: &noarch-python
+      noarch: python
+    requirements:
+      host:
+        - python >=3.6
+      run:
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - pycryptodome
+        - python >=3.6
+    test: *simple-test
+
+  - name: pypdf-with-image
+    build: *noarch-python
+    requirements:
+      host:
+        - python >=3.6
+      run:
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - pillow
+        - python >=3.6
+    test: *simple-test
+
+  - name: pypdf-with-full
+    build: *noarch-python
+    requirements:
+      host:
+        - python >=3.6
+      run:
+        - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - python >=3.6
+    test: *simple-test
+
+  - name: _pypdf-with-full-tests
+    build: *noarch-python
+    requirements:
+      host:
+        - python >=3.6
+      run:
+        - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-full", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - python >=3.6
+    test:
+      source_files:
+        - src/pyproject.toml
+        - src/tests
+        - src/resources
+      imports:
+        - pypdf
+      commands:
+        - pip check
+        - cd src && pytest -vv --cov=pypdf --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail {{ pytest_args }}
+      requires:
+        - pip
+        - pytest-cov
 
 about:
   home: https://pypi.org/project/pypdf
   summary: A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files
   dev_url: https://github.com/py-pdf/pypdf
   license: BSD-3-Clause
-  license_file: LICENSE
+  license_file: dist/LICENSE
   doc_url: https://pypdf.readthedocs.io
 
 extra:
+  feedstock-name: pypdf
   recipe-maintainers:
     - MartinThoma
     - bollwyvl
