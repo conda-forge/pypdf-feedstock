@@ -31,7 +31,11 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-_pypdf--with--full--tests-green.svg)](https://anaconda.org/conda-forge/_pypdf-with-full-tests) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/_pypdf-with-full-tests.svg)](https://anaconda.org/conda-forge/_pypdf-with-full-tests) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/_pypdf-with-full-tests.svg)](https://anaconda.org/conda-forge/_pypdf-with-full-tests) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/_pypdf-with-full-tests.svg)](https://anaconda.org/conda-forge/_pypdf-with-full-tests) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pypdf-green.svg)](https://anaconda.org/conda-forge/pypdf) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pypdf.svg)](https://anaconda.org/conda-forge/pypdf) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pypdf.svg)](https://anaconda.org/conda-forge/pypdf) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pypdf.svg)](https://anaconda.org/conda-forge/pypdf) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pypdf--with--crypto-green.svg)](https://anaconda.org/conda-forge/pypdf-with-crypto) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pypdf-with-crypto.svg)](https://anaconda.org/conda-forge/pypdf-with-crypto) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pypdf-with-crypto.svg)](https://anaconda.org/conda-forge/pypdf-with-crypto) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pypdf-with-crypto.svg)](https://anaconda.org/conda-forge/pypdf-with-crypto) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pypdf--with--full-green.svg)](https://anaconda.org/conda-forge/pypdf-with-full) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pypdf-with-full.svg)](https://anaconda.org/conda-forge/pypdf-with-full) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pypdf-with-full.svg)](https://anaconda.org/conda-forge/pypdf-with-full) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pypdf-with-full.svg)](https://anaconda.org/conda-forge/pypdf-with-full) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pypdf--with--image-green.svg)](https://anaconda.org/conda-forge/pypdf-with-image) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pypdf-with-image.svg)](https://anaconda.org/conda-forge/pypdf-with-image) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pypdf-with-image.svg)](https://anaconda.org/conda-forge/pypdf-with-image) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pypdf-with-image.svg)](https://anaconda.org/conda-forge/pypdf-with-image) |
 
 Installing pypdf
 ================
@@ -43,41 +47,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pypdf` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `_pypdf-with-full-tests, pypdf, pypdf-with-crypto, pypdf-with-full, pypdf-with-image` can be installed with `conda`:
 
 ```
-conda install pypdf
-```
-
-or with `mamba`:
-
-```
-mamba install pypdf
-```
-
-It is possible to list all of the versions of `pypdf` available on your platform with `conda`:
-
-```
-conda search pypdf --channel conda-forge
+conda install _pypdf-with-full-tests pypdf pypdf-with-crypto pypdf-with-full pypdf-with-image
 ```
 
 or with `mamba`:
 
 ```
-mamba search pypdf --channel conda-forge
+mamba install _pypdf-with-full-tests pypdf pypdf-with-crypto pypdf-with-full pypdf-with-image
+```
+
+It is possible to list all of the versions of `_pypdf-with-full-tests` available on your platform with `conda`:
+
+```
+conda search _pypdf-with-full-tests --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search _pypdf-with-full-tests --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search pypdf --channel conda-forge
+mamba repoquery search _pypdf-with-full-tests --channel conda-forge
 
-# List packages depending on `pypdf`:
-mamba repoquery whoneeds pypdf --channel conda-forge
+# List packages depending on `_pypdf-with-full-tests`:
+mamba repoquery whoneeds _pypdf-with-full-tests --channel conda-forge
 
-# List dependencies of `pypdf`:
-mamba repoquery depends pypdf --channel conda-forge
+# List dependencies of `_pypdf-with-full-tests`:
+mamba repoquery depends _pypdf-with-full-tests --channel conda-forge
 ```
 
 
