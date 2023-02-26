@@ -1,11 +1,11 @@
-About pypdf
-===========
+About pypdf-feedstock
+=====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pypdf-feedstock/blob/main/LICENSE.txt)
 
 Home: https://pypi.org/project/pypdf
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pypdf-feedstock/blob/main/LICENSE.txt)
 
 Summary: A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files
 
