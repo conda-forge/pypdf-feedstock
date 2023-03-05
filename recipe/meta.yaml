@@ -1,4 +1,4 @@
-{% set pytest_args = '-m "not (external or samples or old_habibi)" --cov-fail-under=82' %}
+{% set pytest_args = '-m "not (external or samples)" -k "not old_habibi" --cov-fail-under=82' %}
 {% set version = "3.5.1" %}
 
 package:
