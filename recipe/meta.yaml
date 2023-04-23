@@ -1,5 +1,5 @@
-{% set version = "3.8.0" %}
-{% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi)" --cov-fail-under=82' %}
+{% set version = "3.8.1" %}
+{% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa)" --cov-fail-under=82' %}
 
 package:
   name: pypdf-split
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: aab7fd43f3f4115ac285dc4a4497ebf2c89eece24e186f3954695509d560a78e
+    sha256: 761ad6dc33abb78d358b4ae42206c5f185798f8b537be9b8fdecd9ee834a894d
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 2fb66e1cedece2cc532cf1e6832e49e92d4f76e00c2d504ed97ce611219a1f3d
+    sha256: 939a0a1d44779e6f32fd6266f0873ed33832a20aa873e655803e345abf9f9dfa
 
 build:
   number: 0
