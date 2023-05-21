@@ -1,4 +1,4 @@
-{% set version = "3.8.1" %}
+{% set version = "3.9.0" %}
 {% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa)" --cov-fail-under=82' %}
 
 package:
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 761ad6dc33abb78d358b4ae42206c5f185798f8b537be9b8fdecd9ee834a894d
+    sha256: 06136b9ed99525159482a1397a49f3fc0fd55ffd700d1ad4393e3f42d192a035
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 939a0a1d44779e6f32fd6266f0873ed33832a20aa873e655803e345abf9f9dfa
+    sha256: 123ea6e05a10bfc577c17b3edd8a240298ce52245964d7027910236400391137
 
 build:
   number: 0
@@ -106,6 +106,7 @@ outputs:
         - pip
         - pytest-cov
         - pytest-socket
+        - pytest-timeout
 
 about:
   home: https://pypi.org/project/pypdf
