@@ -114,9 +114,9 @@ outputs:
 about:
   home: https://pypi.org/project/pypdf
   summary: A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files
-  dev_url: https://github.com/py-pdf/pypdf
   license: BSD-3-Clause
   license_file: dist/LICENSE
+  dev_url: https://github.com/py-pdf/pypdf
   doc_url: https://pypdf.readthedocs.io
 
 extra:
