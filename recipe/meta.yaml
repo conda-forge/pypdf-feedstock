@@ -1,4 +1,5 @@
-{% set version = "3.11.0" %}
+{% set pytest_args = "-m \"not (external or samples)\" -k \"not (multi_language or old_habibi or pdfa or iss1710)\" --cov-fail-under=82" %}
+{% set version = "3.11.1" %}
 {% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa or iss1710)" --cov-fail-under=82' %}
 
 package:
@@ -8,10 +9,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 2f5b9b28763234427cd6e525795e583aae7e36a79bdadd48ba8ab5277c12182a
+    sha256: 198c4d0231525d0b730cbbd11a5fc7d9a2e410dfc8ae2928c8de000b7ef149c5
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: bde551e6951ae65e9df119d261e4ce2d1c7aa5acfd3a24b33d5d797a8d65c03a
+    sha256: e1daf760e593364fad3688a0cb405b5b4970fc091ba7977c3f161488333d17a0
 
 build:
   number: 0
