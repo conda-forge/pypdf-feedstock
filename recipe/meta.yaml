@@ -53,11 +53,11 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.6
+        - python >=3.7
       run:
         - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
-        - pycryptodome
-        - python >=3.6
+        - cryptography
+        - python >=3.7
     test: *simple-test
 
   - name: pypdf-with-image
