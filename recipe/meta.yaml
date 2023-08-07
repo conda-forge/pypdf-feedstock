@@ -1,6 +1,5 @@
-{% set pytest_args = "-m \"not (external or samples)\" -k \"not (multi_language or old_habibi or pdfa or iss1710)\" --cov-fail-under=82" %}
-{% set version = "3.14.0" %}
-{% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa or iss1710)" --cov-fail-under=82' %}
+{% set version = "3.15.0" %}
+{% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa or iss1710 or escapedcode_followed_by_int or ASurveyofImageClassificationBasedTechniques)" --cov-fail-under=82' %}
 
 package:
   name: pypdf-split
@@ -9,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 1fb4edffa5d3a448f964d0ad2a31cd8e408ea5d76d45efac042a8c3448c83b0a
+    sha256: 8a6264e1c47c63dc2484e29bdfa76b121435896a84e94b7c5ae82c6ae96354bb
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: b3a340430faa9a8fb610240b74132f3ce3aa0c4b7e5436776a0c3202db00aae6
+    sha256: 09da82e312d5f14362b50cb3a7250bdbfdc7fd2e539b74b2cb79385114092840
 
 build:
   number: 0
@@ -52,11 +51,11 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.6
+        - python >=3.7
       run:
         - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
-        - pycryptodome
-        - python >=3.6
+        - cryptography
+        - python >=3.7
     test: *simple-test
 
   - name: pypdf-with-image
