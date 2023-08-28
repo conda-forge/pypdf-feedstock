@@ -1,5 +1,3 @@
-{% set pytest_args = "-m \"not (external or samples)\" -k \"not (multi_language or old_habibi or pdfa or iss1710 or escapedcode_followed_by_int or ASurveyofImageClassificationBasedTechniques or image_similarity)\" --cov-fail-under=82" %}
-{% set pytest_args = "-m \"not (external or samples)\" -k \"not (multi_language or old_habibi or pdfa or iss1710 or escapedcode_followed_by_int or ASurveyofImageClassificationBasedTechniques or image_similarity)\" --cov-fail-under=82" %}
 {% set version = "3.15.4" %}
 {% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa or iss1710 or escapedcode_followed_by_int or ASurveyofImageClassificationBasedTechniques or image_similarity)" --cov-fail-under=82' %}
 
@@ -39,7 +37,7 @@ outputs:
       run:
         - dataclasses
         - python >=3.6
-        - typing_extensions >=3.10.0.0
+        - typing_extensions >=3.7.4.3
     test: &simple-test
       imports:
         - pypdf
