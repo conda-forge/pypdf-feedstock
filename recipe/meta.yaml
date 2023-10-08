@@ -1,5 +1,4 @@
 {% set version = "3.16.3" %}
-{% set pytest_args = '-m "not (external or samples)" -k "not (multi_language or old_habibi or pdfa or iss1710 or escapedcode_followed_by_int or ASurveyofImageClassificationBasedTechniques or image_similarity or encrypt_stream_dictionary)" --cov-fail-under=82' %}
 
 package:
   name: pypdf-split
@@ -27,7 +26,7 @@ outputs:
 
   - name: pypdf
     build:
-      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
       noarch: python
     requirements:
       host:
@@ -53,7 +52,7 @@ outputs:
       host:
         - python >=3.7
       run:
-        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf", exact=True) }}
         - cryptography
         - python >=3.7
     test: *simple-test
@@ -64,7 +63,7 @@ outputs:
       host:
         - python >=3.6
       run:
-        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf", exact=True) }}
         - pillow
         - python >=3.6
     test: *simple-test
@@ -75,9 +74,9 @@ outputs:
       host:
         - python >=3.6
       run:
-        - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
-        - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
-        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
+        - {{ pin_subpackage("pypdf-with-image", exact=True) }}
+        - {{ pin_subpackage("pypdf", exact=True) }}
         - python >=3.6
     test: *simple-test
 
@@ -87,12 +86,14 @@ outputs:
       host:
         - python >=3.6
       run:
-        - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
-        - {{ pin_subpackage("pypdf-with-full", max_pin="x.x.x") }}
-        - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
-        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
+        - {{ pin_subpackage("pypdf-with-full", exact=True) }}
+        - {{ pin_subpackage("pypdf-with-image", exact=True) }}
+        - {{ pin_subpackage("pypdf", exact=True) }}
         - python >=3.6
     test:
+      files:
+        - test_all.py
       source_files:
         - src/pyproject.toml
         - src/tests
@@ -101,9 +102,11 @@ outputs:
         - pypdf
       commands:
         - pip check
-        - cd src && pytest -vv --cov=pypdf --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail {{ pytest_args }}
+        - mypy -p pypdf
+        - python test_all.py
       requires:
         - fpdf
+        - mypy
         - pip
         - pytest-cov
         - pytest-socket
