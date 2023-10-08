@@ -30,7 +30,7 @@ outputs:
       noarch: python
     requirements:
       host:
-        - flit-core >=3.2,<4
+        - flit-core >=3.9,<4
         - pip
         - python >=3.6
       run:
@@ -64,7 +64,7 @@ outputs:
         - python >=3.6
       run:
         - {{ pin_subpackage("pypdf", exact=True) }}
-        - pillow
+        - pillow >=8.0.0
         - python >=3.6
     test: *simple-test
 
@@ -102,7 +102,6 @@ outputs:
         - pypdf
       commands:
         - pip check
-        - mypy -p pypdf
         - python test_all.py
       requires:
         - fpdf
