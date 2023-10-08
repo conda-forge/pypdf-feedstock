@@ -111,6 +111,7 @@ outputs:
         - pytest-cov
         - pytest-socket
         - pytest-timeout
+        - types-pillow
 
 about:
   home: https://pypi.org/project/pypdf
