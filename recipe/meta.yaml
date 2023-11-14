@@ -1,4 +1,4 @@
-{% set version = "3.17.0" %}
+{% set version = "3.17.1" %}
 
 package:
   name: pypdf-split
@@ -7,10 +7,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 9fab275fea57c9e5b2416035d13d867a459ebe36294a4c39a3d0bb45a7404bad
+    sha256: c79ad4db16c9a86071a3556fb5d619022b36b8880ba3ef416558ea95fbec4cb9
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 026812574b13396046eef16d93e30ee82889488cdaf0891728dc274ace36a2f1
+    sha256: 952a2e692b503973dff0a4358269c2c1164bc462f23dcbc18721aa59474bace6
 
 build:
   number: 0
