@@ -110,6 +110,7 @@ outputs:
         - pytest-cov
         - pytest-socket
         - pytest-timeout
+        - pyyaml
         - types-pillow
 
 about:
