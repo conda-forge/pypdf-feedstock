@@ -1,4 +1,4 @@
-{% set version = "3.17.1" %}
+{% set version = "3.17.2" %}
 
 package:
   name: pypdf-split
@@ -7,10 +7,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: c79ad4db16c9a86071a3556fb5d619022b36b8880ba3ef416558ea95fbec4cb9
+    sha256: d6f077060912f8292d7db3da04f7bf2428ac974781e11eef219193a22120f649
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 952a2e692b503973dff0a4358269c2c1164bc462f23dcbc18721aa59474bace6
+    sha256: cd550e8cff2b0f4fdfc8d0f77de813fad2e97ae0039f9ae84bf5a62600d95e9f
 
 build:
   number: 0
@@ -110,6 +110,7 @@ outputs:
         - pytest-cov
         - pytest-socket
         - pytest-timeout
+        - pyyaml
         - types-pillow
 
 about:
