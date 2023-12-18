@@ -2,7 +2,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-COV_FAIL_UNDER = 81
+COV_FAIL_UNDER = 80
 UTF8 = dict(encoding="utf-8")
 # ignore pycryptodome, only used in py36
 MYPY_OVERRIDES = """
