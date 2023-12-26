@@ -4,15 +4,6 @@ from pathlib import Path
 
 COV_FAIL_UNDER = 80
 UTF8 = dict(encoding="utf-8")
-# ignore pycryptodome, only used in py36
-MYPY_OVERRIDES = """
-[[tool.mypy.overrides]]
-ignore_missing_imports = true
-module = [
-    "Crypto",
-    "Crypto.*",
-]
-"""
 
 HERE = Path(__file__).parent
 SRC = HERE / "src"
@@ -53,17 +44,8 @@ PYTEST_ARGS = [
     f"--cov-fail-under={COV_FAIL_UNDER}",
 ]
 
-MYPY_ARGS = ["mypy", "-p", "pypdf"]
-
 
 if __name__ == "__main__":
     print(">>> ", "\t".join(PYTEST_ARGS), flush=True)
     rc = subprocess.call(PYTEST_ARGS, cwd=str(SRC))
-    if rc == 0:
-        new_ppt = "\n\n".join([PYPROJECT_TOML.read_text(**UTF8), MYPY_OVERRIDES])
-        print(new_ppt, flush=True)
-        PYPROJECT_TOML.write_text(new_ppt, **UTF8)
-        print("updated pyproject.toml")
-        print(">>> ", "\t".join(MYPY_ARGS), flush=True)
-        rc = subprocess.call(MYPY_ARGS, cwd=str(SRC))
     sys.exit(rc)

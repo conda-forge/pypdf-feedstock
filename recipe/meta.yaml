@@ -1,4 +1,4 @@
-{% set version = "3.17.3" %}
+{% set version = "3.17.4" %}
 
 package:
   name: pypdf-split
@@ -7,10 +7,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 70c072218e3729218676bdf107e921fa49d1838c2f46056ce26d495c7e58f641
+    sha256: ec96e2e4fc9648ac609d19c00d41e9d606e0ae2ce5a0bbe7691426f5f157166a
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: a0adcc8e0341d02977f0f9a37a400786c3831948409d092f39c39e9a81d6572d
+    sha256: ccc89b7b732192e66028cb6ff468a6b25279f53cfecf037b074775de38d88062
 
 build:
   number: 0
@@ -105,7 +105,6 @@ outputs:
         - python test_all.py
       requires:
         - fpdf
-        - mypy
         - pip
         - pytest-cov
         - pytest-socket
