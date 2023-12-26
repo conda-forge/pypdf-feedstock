@@ -105,7 +105,6 @@ outputs:
         - python test_all.py
       requires:
         - fpdf
-        - mypy
         - pip
         - pytest-cov
         - pytest-socket
