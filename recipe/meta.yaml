@@ -1,4 +1,5 @@
 {% set version = "4.0.0" %}
+{% set min_python = "python >=3.7" %}
 
 package:
   name: pypdf-split
@@ -18,9 +19,9 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - {{ min_python }}
   run:
-    - python >=3.6
+    - {{ min_python }}
 
 outputs:
 
@@ -30,12 +31,12 @@ outputs:
       noarch: python
     requirements:
       host:
+        - {{ min_python }}
         - flit-core >=3.9,<4
         - pip
-        - python >=3.6
       run:
+        - {{ min_python }}
         - dataclasses
-        - python >=3.6
         - typing_extensions >=3.7.4.3
     test: &simple-test
       imports:
@@ -50,47 +51,47 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.7
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - cryptography
-        - python >=3.7
     test: *simple-test
 
   - name: pypdf-with-image
     build: *noarch-python
     requirements:
       host:
-        - python >=3.6
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - pillow >=8.0.0
-        - python >=3.6
     test: *simple-test
 
   - name: pypdf-with-full
     build: *noarch-python
     requirements:
       host:
-        - python >=3.6
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
         - {{ pin_subpackage("pypdf", exact=True) }}
-        - python >=3.6
     test: *simple-test
 
   - name: _pypdf-with-full-tests
     build: *noarch-python
     requirements:
       host:
-        - python >=3.6
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-full", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
         - {{ pin_subpackage("pypdf", exact=True) }}
-        - python >=3.6
     test:
       files:
         - test_all.py
