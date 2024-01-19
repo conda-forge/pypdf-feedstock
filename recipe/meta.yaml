@@ -36,7 +36,6 @@ outputs:
         - pip
       run:
         - {{ min_python }}
-        - dataclasses
         - typing_extensions >=3.7.4.3
     test: &simple-test
       imports:
