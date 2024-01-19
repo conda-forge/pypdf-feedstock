@@ -1,4 +1,5 @@
-{% set version = "3.17.4" %}
+{% set version = "4.0.0" %}
+{% set min_python = "python >=3.7" %}
 
 package:
   name: pypdf-split
@@ -7,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: ec96e2e4fc9648ac609d19c00d41e9d606e0ae2ce5a0bbe7691426f5f157166a
+    sha256: 637de66382238f3537fcf8f27fdb47e2c99dd5aa6de173a28a5b737f9a784973
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: ccc89b7b732192e66028cb6ff468a6b25279f53cfecf037b074775de38d88062
+    sha256: f97e8ce19caf9c3af015017d45a4cf7fd41b50fa053d8f9c9f3dc25b9125a364
 
 build:
   number: 0
@@ -18,9 +19,9 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - {{ min_python }}
   run:
-    - python >=3.6
+    - {{ min_python }}
 
 outputs:
 
@@ -30,12 +31,11 @@ outputs:
       noarch: python
     requirements:
       host:
+        - {{ min_python }}
         - flit-core >=3.9,<4
         - pip
-        - python >=3.6
       run:
-        - dataclasses
-        - python >=3.6
+        - {{ min_python }}
         - typing_extensions >=3.7.4.3
     test: &simple-test
       imports:
@@ -50,47 +50,47 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.7
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - cryptography
-        - python >=3.7
     test: *simple-test
 
   - name: pypdf-with-image
     build: *noarch-python
     requirements:
       host:
-        - python >=3.6
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - pillow >=8.0.0
-        - python >=3.6
     test: *simple-test
 
   - name: pypdf-with-full
     build: *noarch-python
     requirements:
       host:
-        - python >=3.6
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
         - {{ pin_subpackage("pypdf", exact=True) }}
-        - python >=3.6
     test: *simple-test
 
   - name: _pypdf-with-full-tests
     build: *noarch-python
     requirements:
       host:
-        - python >=3.6
+        - {{ min_python }}
       run:
+        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-full", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
         - {{ pin_subpackage("pypdf", exact=True) }}
-        - python >=3.6
     test:
       files:
         - test_all.py
