@@ -1,4 +1,5 @@
-{% set version = "4.0.0" %}
+{% set min_python = "python >=3.7" %}
+{% set version = "4.0.1" %}
 {% set min_python = "python >=3.7" %}
 
 package:
@@ -8,10 +9,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 637de66382238f3537fcf8f27fdb47e2c99dd5aa6de173a28a5b737f9a784973
+    sha256: 871badcfe335dd68b6b563aa7646288c6b86f9ceecffb21e86341261d65d8173
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: f97e8ce19caf9c3af015017d45a4cf7fd41b50fa053d8f9c9f3dc25b9125a364
+    sha256: 7535af98c13927d1d441222b713e9ccd378d72a6dfceaa904908c333683d510b
 
 build:
   number: 0
