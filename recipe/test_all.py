@@ -25,6 +25,11 @@ K_SKIPS = [
     "watermarking_reportlab_rendering",
     # py312:  a bytes-like object is required, not 'str'
     "merging_many_temporary_files",
+    # https://github.com/conda-forge/pypdf-feedstock/pull/44
+    "get_images_raw",
+    "issue604",
+    "read_prev_0_trailer",
+    "read_unknown_zero_pages",
 ]
 
 PYTEST_ARGS = [
