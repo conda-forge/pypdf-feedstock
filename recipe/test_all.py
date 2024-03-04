@@ -55,8 +55,7 @@ CLOBBER = [
 ]
 
 if __name__ == "__main__":
-    for clobber in CLOBBER:
-        (src / clobber).unlink()
+    [(SRC / clobber).unlink() for clobber in CLOBBER]
     print(">>> ", "\t".join(PYTEST_ARGS), flush=True)
     rc = subprocess.call(PYTEST_ARGS, cwd=str(SRC))
     sys.exit(rc)
