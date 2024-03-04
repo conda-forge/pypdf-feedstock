@@ -30,6 +30,8 @@ K_SKIPS = [
     "issue604",
     "read_prev_0_trailer",
     "read_unknown_zero_pages",
+    # https://github.com/conda-forge/pypdf-feedstock/pull/46
+    "calling_indirect_objects",
 ]
 
 PYTEST_ARGS = [
