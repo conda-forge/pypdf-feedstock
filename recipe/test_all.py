@@ -30,6 +30,8 @@ K_SKIPS = [
     "issue604",
     "read_prev_0_trailer",
     "read_unknown_zero_pages",
+    # https://github.com/conda-forge/pypdf-feedstock/pull/46
+    "calling_indirect_objects",
 ]
 
 PYTEST_ARGS = [
@@ -49,8 +51,13 @@ PYTEST_ARGS = [
     f"--cov-fail-under={COV_FAIL_UNDER}",
 ]
 
+CLOBBER = [
+    # https://github.com/conda-forge/pypdf-feedstock/pull/46
+    "tests/scripts/test_make_release.py",
+]
 
 if __name__ == "__main__":
+    [(SRC / clobber).unlink() for clobber in CLOBBER]
     print(">>> ", "\t".join(PYTEST_ARGS), flush=True)
     rc = subprocess.call(PYTEST_ARGS, cwd=str(SRC))
     sys.exit(rc)
