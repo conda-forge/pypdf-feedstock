@@ -1,6 +1,7 @@
-{% set min_python = "python >=3.7" %}
 {% set version = "4.2.0" %}
-{% set min_python = "python >=3.7" %}
+
+# handle undefined PYTHON in `noarch: generic` outputs
+{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
 
 package:
   name: pypdf-split
@@ -20,9 +21,9 @@ build:
 
 requirements:
   host:
-    - {{ min_python }}
+    - python >=3.7
   run:
-    - {{ min_python }}
+    - python >=3.7
 
 outputs:
 
@@ -32,12 +33,12 @@ outputs:
       noarch: python
     requirements:
       host:
-        - {{ min_python }}
         - flit-core >=3.9,<4
         - pip
+        - python >=3.7
       run:
-        - {{ min_python }}
-        - typing_extensions >=3.7.4.3
+        - python >=3.7
+        - typing_extensions >=4.0
     test: &simple-test
       imports:
         - pypdf
@@ -47,47 +48,35 @@ outputs:
         - pip
 
   - name: pypdf-with-crypto
-    build: &noarch-python
-      noarch: python
+    build: &noarch-generic
+      noarch: generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - cryptography
     test: *simple-test
 
   - name: pypdf-with-image
-    build: *noarch-python
+    build: *noarch-generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - pillow >=8.0.0
     test: *simple-test
 
   - name: pypdf-with-full
-    build: *noarch-python
+    build: *noarch-generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
         - {{ pin_subpackage("pypdf", exact=True) }}
     test: *simple-test
 
   - name: _pypdf-with-full-tests
-    build: *noarch-python
+    build: *noarch-generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-full", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
