@@ -1,5 +1,7 @@
-{% set version = "4.1.0" %}
-{% set min_python = "python >=3.7" %}
+{% set version = "4.2.0" %}
+
+# handle undefined PYTHON in `noarch: generic` outputs
+{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
 
 package:
   name: pypdf-split
@@ -8,10 +10,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 01c3257ec908676efd60a4537e525b89d48e0852bc92b4e0aa4cc646feda17cc
+    sha256: fe63f3f7d1dcda1c9374421a94c1bba6c6f8c4a62173a59b64ffd52058f846b1
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 9b2e646a3bf67d6072238e212008e598f27d7ab7d0014bf11df0a564a46ecb57
+    sha256: 4096459bdb19df0231360617f2266d8068a40b9eb202bbea9c54274a320f0c55
 
 build:
   number: 0
@@ -19,9 +21,9 @@ build:
 
 requirements:
   host:
-    - {{ min_python }}
+    - python >=3.7
   run:
-    - {{ min_python }}
+    - python >=3.7
 
 outputs:
 
@@ -31,12 +33,12 @@ outputs:
       noarch: python
     requirements:
       host:
-        - {{ min_python }}
         - flit-core >=3.9,<4
         - pip
+        - python >=3.7
       run:
-        - {{ min_python }}
-        - typing_extensions >=3.7.4.3
+        - python >=3.7
+        - typing_extensions >=4.0
     test: &simple-test
       imports:
         - pypdf
@@ -46,47 +48,35 @@ outputs:
         - pip
 
   - name: pypdf-with-crypto
-    build: &noarch-python
-      noarch: python
+    build: &noarch-generic
+      noarch: generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - cryptography
     test: *simple-test
 
   - name: pypdf-with-image
-    build: *noarch-python
+    build: *noarch-generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf", exact=True) }}
         - pillow >=8.0.0
     test: *simple-test
 
   - name: pypdf-with-full
-    build: *noarch-python
+    build: *noarch-generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
         - {{ pin_subpackage("pypdf", exact=True) }}
     test: *simple-test
 
   - name: _pypdf-with-full-tests
-    build: *noarch-python
+    build: *noarch-generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
         - {{ pin_subpackage("pypdf-with-full", exact=True) }}
         - {{ pin_subpackage("pypdf-with-image", exact=True) }}
