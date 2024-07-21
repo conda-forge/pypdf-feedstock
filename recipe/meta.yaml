@@ -1,4 +1,4 @@
-{% set version = "4.3.0" %}
+{% set version = "4.3.1" %}
 
 # handle undefined PYTHON in `noarch: generic` outputs
 {% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
@@ -10,10 +10,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pypdf/pypdf-{{ version }}.tar.gz
-    sha256: 0d7a4c67fd03782f5a09d3f48c11c7a31e0bb9af78861a25229bb49259ed0504
+    sha256: b2f37fe9a3030aa97ca86067a56ba3f9d3565f9a791b305c7355d8392c30d91b
   - folder: src
     url: https://github.com/py-pdf/pypdf/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 3a7745e7925780211fa05c125360c088126386b54d2fa52962bf81478f3b16a4
+    sha256: c7d6c9ddb6587ffd13ed3678d74842decf2aa209cba97c661830296c0e2c33bd
 
 build:
   number: 0
