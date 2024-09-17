@@ -29,7 +29,7 @@ requirements:
     - python >=3.8
     - typing_extensions >=4.0
 
-test: &simple-test
+test:
   imports:
     - pypdf
   commands:
@@ -41,33 +41,56 @@ outputs:
   - name: pypdf
 
   - name: pypdf-with-crypto
-    build: &noarch-generic
+    build:
       noarch: generic
     requirements:
       run:
         - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
         - cryptography
-    test: *simple-test
+    test:
+      imports:
+        - pypdf
+      commands:
+        - pip check
+      requires:
+        - pip
+
 
   - name: pypdf-with-image
-    build: *noarch-generic
+    build:
+      noarch: generic
     requirements:
       run:
         - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
         - pillow >=8.0.0
-    test: *simple-test
+    test:
+      imports:
+        - pypdf
+      commands:
+        - pip check
+      requires:
+        - pip
+
 
   - name: pypdf-with-full
-    build: *noarch-generic
+    build:
+      noarch: generic
     requirements:
       run:
         - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
         - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
         - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
-    test: *simple-test
+      test:
+        imports:
+          - pypdf
+        commands:
+          - pip check
+        requires:
+          - pip
 
   - name: _pypdf-with-full-tests
-    build: *noarch-generic
+    build:
+      noarch: generic
     requirements:
       run:
         - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
