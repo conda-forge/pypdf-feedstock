@@ -28,6 +28,7 @@ requirements:
   run:
     - python >=3.8
     - typing_extensions >=4.0
+
 test: &simple-test
   imports:
     - pypdf
@@ -35,11 +36,6 @@ test: &simple-test
     - pip check
   requires:
     - pip
-requirements:
-  host:
-    - python >=3.8
-  run:
-    - python >=3.8
 
 outputs:
   - name: pypdf
