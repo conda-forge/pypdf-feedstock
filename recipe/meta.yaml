@@ -4,7 +4,7 @@
 {% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
 
 package:
-  name: pypdf-split
+  name: pypdf
   version: {{ version }}
 
 source:
@@ -18,41 +18,38 @@ source:
 build:
   number: 0
   noarch: python
+  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.7
+    - flit-core >=3.9,<4
+    - pip
+    - python >=3.8
   run:
-    - python >=3.7
+    - python >=3.8
+    - typing_extensions >=4.0
+test: &simple-test
+  imports:
+    - pypdf
+  commands:
+    - pip check
+  requires:
+    - pip
+requirements:
+  host:
+    - python >=3.8
+  run:
+    - python >=3.8
 
 outputs:
-
   - name: pypdf
-    build:
-      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-      noarch: python
-    requirements:
-      host:
-        - flit-core >=3.9,<4
-        - pip
-        - python >=3.7
-      run:
-        - python >=3.7
-        - typing_extensions >=4.0
-    test: &simple-test
-      imports:
-        - pypdf
-      commands:
-        - pip check
-      requires:
-        - pip
 
   - name: pypdf-with-crypto
     build: &noarch-generic
       noarch: generic
     requirements:
       run:
-        - {{ pin_subpackage("pypdf", exact=True) }}
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
         - cryptography
     test: *simple-test
 
@@ -60,7 +57,7 @@ outputs:
     build: *noarch-generic
     requirements:
       run:
-        - {{ pin_subpackage("pypdf", exact=True) }}
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
         - pillow >=8.0.0
     test: *simple-test
 
@@ -68,19 +65,19 @@ outputs:
     build: *noarch-generic
     requirements:
       run:
-        - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
-        - {{ pin_subpackage("pypdf-with-image", exact=True) }}
-        - {{ pin_subpackage("pypdf", exact=True) }}
+        - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
     test: *simple-test
 
   - name: _pypdf-with-full-tests
     build: *noarch-generic
     requirements:
       run:
-        - {{ pin_subpackage("pypdf-with-crypto", exact=True) }}
-        - {{ pin_subpackage("pypdf-with-full", exact=True) }}
-        - {{ pin_subpackage("pypdf-with-image", exact=True) }}
-        - {{ pin_subpackage("pypdf", exact=True) }}
+        - {{ pin_subpackage("pypdf-with-crypto", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-full", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf-with-image", max_pin="x.x.x") }}
+        - {{ pin_subpackage("pypdf", max_pin="x.x.x") }}
     test:
       files:
         - test_all.py
