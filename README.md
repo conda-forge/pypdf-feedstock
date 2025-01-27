@@ -11,7 +11,7 @@ Summary: A pure-python PDF library capable of splitting, merging, cropping, and 
 
 Development: https://github.com/py-pdf/pypdf
 
-Documentation: https://pypdf.readthedocs.io
+Documentation: https://pypdf.readthedocs.io/
 
 Current build status
 ====================
