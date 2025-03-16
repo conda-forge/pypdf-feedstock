@@ -3,7 +3,6 @@ schema_version: 1
 
 context:
   version: "5.4.0"
-  PYTHON: ${{ PYTHON | default("$PYTHON") }}
 
 recipe:
   name: pypdf
