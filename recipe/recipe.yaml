@@ -31,7 +31,7 @@ outputs:
         - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
     requirements:
       host:
-        - flit-core >=3.9,<4
+        - flit-core >=3.11,<4
         - pip
         - python ${{ python_min }}.*
       run:
