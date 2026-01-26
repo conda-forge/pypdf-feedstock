@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "6.6.0"
+  version: "6.6.1"
   python_check_max: "3.13"
 
 recipe:
@@ -11,10 +11,10 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/p/pypdf/pypdf-${{ version }}.tar.gz
-    sha256: 4c887ef2ea38d86faded61141995a3c7d068c9d6ae8477be7ae5de8a8e16592f
+    sha256: 7ea09ab3748644dacef1a30c475d1edc031656f69c03332c291ebf5b9291a909
     target_directory: dist
   - url: https://github.com/py-pdf/pypdf/archive/refs/tags/${{ version }}.tar.gz
-    sha256: 2cf2384e67d0577674bdb3216672b6f85845b4ee0bd4de4b39b215105be0bfff
+    sha256: 4ef4d479ffdab5f265858ae7a04053100f6da0835c47f90dc4c491303aca8b43
     target_directory: src
 
 build:
