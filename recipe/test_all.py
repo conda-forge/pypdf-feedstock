@@ -2,7 +2,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-COV_FAIL_UNDER = 80
+COV_FAIL_UNDER = 86
 UTF8 = dict(encoding="utf-8")
 
 HERE = Path(__file__).parent
