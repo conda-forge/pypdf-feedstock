@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "6.10.2"
+  version: "6.11.0"
   python_check_max: "3.13"
 
 recipe:
@@ -11,10 +11,10 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/p/pypdf/pypdf-${{ version }}.tar.gz
-    sha256: 7d09ce108eff6bf67465d461b6ef352dcb8d84f7a91befc02f904455c6eea11d
+    sha256: 062b51c81b0910e6d2755e99e1c5547a0a23b7d0a32322af66240d8edcfabe87
     target_directory: dist
   - url: https://github.com/py-pdf/pypdf/archive/refs/tags/${{ version }}.tar.gz
-    sha256: 966482a98ac1638189496556d8970a592765f5e31c121c9945d95f260f570e5b
+    sha256: e8e900bc7345b0acc7277365f1e2c986165a4fb36f0879b685af39f175e5c1e4
     target_directory: src
 
 build:
@@ -51,8 +51,24 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
-        - cryptography
+        - ${{ pin_subpackage("pypdf", exact=True) }}
+        - cryptography >3.0
+    tests:
+      - python:
+          imports: pypdf
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pypdf-with-fonts
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pypdf", exact=True) }}
+        - fonttools
     tests:
       - python:
           imports: pypdf
@@ -67,7 +83,7 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf", exact=True) }}
         - pillow >=8.0.0
     tests:
       - python:
@@ -83,9 +99,10 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("pypdf-with-crypto", upper_bound="x.x.x") }}
-        - ${{ pin_subpackage("pypdf-with-image", upper_bound="x.x.x") }}
-        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf-with-crypto", exact=True) }}
+        - ${{ pin_subpackage("pypdf-with-image", exact=True) }}
+        - ${{ pin_subpackage("pypdf-with-fonts", exact=True) }}
+        - ${{ pin_subpackage("pypdf", exact=True) }}
     tests:
       - python:
           imports: pypdf
@@ -100,10 +117,7 @@ outputs:
       noarch: generic
     requirements:
       run:
-        - ${{ pin_subpackage("pypdf-with-crypto", upper_bound="x.x.x") }}
-        - ${{ pin_subpackage("pypdf-with-full", upper_bound="x.x.x") }}
-        - ${{ pin_subpackage("pypdf-with-image", upper_bound="x.x.x") }}
-        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf-with-full", exact=True) }}
     tests:
       - python:
           imports: pypdf
