@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "6.21.1"
+  version: "6.21.2"
   python_check_max: "3.14"
   summary: |-
     A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files
@@ -13,10 +13,10 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/p/pypdf/pypdf-${{ version }}.tar.gz
-    sha256: 2d62c383acd6e0dff0a96322ba8b1135229343b084d73c6f6cfd947fd291afcb
+    sha256: 0a3e1c5c886a1be03646c16a04827cc166c2a0575c971b26a4bf89686551c2d4
     target_directory: dist
   - url: https://github.com/py-pdf/pypdf/archive/refs/tags/${{ version }}.tar.gz
-    sha256: fe2b84fe5f602b0d031374e3bb5a74141f02e27b545e48ea0aac651a77284f78
+    sha256: 11bd0443550e8f4a917606614779b764ff1bd69be8a74c59d491682f0ee80244
     target_directory: src
 
 build:
