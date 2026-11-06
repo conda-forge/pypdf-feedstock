@@ -61,7 +61,7 @@ outputs:
     requirements:
       run:
         - ${{ pin_subpackage("pypdf", exact=True) }}
-        - cryptography >3.0
+        - cryptography >=43
     tests:
       - python:
           imports: pypdf
