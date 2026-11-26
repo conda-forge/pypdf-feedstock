@@ -168,8 +168,9 @@ outputs:
             - test_all.py
           source:
             - src/pyproject.toml
-            - src/tests/
-            - src/resources/
+            - src/tests/**
+            - src/resources/**
+            - src/sample-files/**
         requirements:
           run:
             - fpdf
