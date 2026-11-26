@@ -35,6 +35,8 @@ K_SKIPS = [
     # https://github.com/conda-forge/pypdf-feedstock/pull/50
     "writer_xmp_metadata_samples",
     "increment_writer",
+    # https://github.com/conda-forge/pypdf-feedstock/pull/147
+    "compress_identical_objects__after_removing_an_appended_copy",
 ]
 
 PYTEST_ARGS = [
